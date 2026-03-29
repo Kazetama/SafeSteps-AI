@@ -66,11 +66,19 @@ export default function HomePage() {
       });
 
       const data = await response.json();
-      if (data.instructions) {
+      if (data.instructions && Array.isArray(data.instructions)) {
         setInstructions(data.instructions);
+      } else {
+        throw new Error("Invalid response format");
       }
     } catch (error) {
       console.error("Error fetching AI instructions:", error);
+      // Last resort fallback if both API and server fail
+      setInstructions([
+        "Tetap tenang dan cari tempat berlindung yang aman.",
+        "Jauhi kaca, cermin, dan benda-benda yang mudah jatuh.",
+        "Segera amankan Tas Siaga Bencana Anda."
+      ]);
     } finally {
       setLoading(false);
     }
