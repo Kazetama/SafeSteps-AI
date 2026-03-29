@@ -1,18 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
-import type { GempaData } from "@/lib/bmkg";
-
-export interface UserProfile {
-  location: string;
-  house_type: string; 
-  has_elderly: boolean;
-  has_infant: boolean;
-}
-
-export interface AIRequestBody {
-  gempa: GempaData;
-  profile: UserProfile;
-}
+import type { AIRequestBody, AIResponse } from "@/types/ai";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 

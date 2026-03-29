@@ -1,23 +1,4 @@
-export interface GempaData {
-  Tanggal: string;
-  Jam: string;
-  DateTime: string;
-  Coordinates: string;
-  Lintang: string;
-  Bujur: string;
-  Magnitude: string;
-  Kedalaman: string;
-  Wilayah: string;
-  Potensi: string;
-  Dirasakan: string;
-  Shakemap: string;
-}
-
-interface BMKGResponse {
-  Infogempa: {
-    gempa: GempaData;
-  };
-}
+import type { GempaData, BMKGResponse } from "@/types/bmkg";
 
 export async function getLatestGempa(): Promise<GempaData> {
   const res = await fetch(
